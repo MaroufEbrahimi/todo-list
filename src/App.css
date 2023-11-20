@@ -32,3 +32,55 @@ button {
   padding-bottom: 25px;
   margin-bottom: 25px;
 }
+
+.todo_input .todo_input_item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 25px;
+}
+
+.todo_input .todo_input_item label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.todo_input .todo_input_item input {
+  padding: 8px;
+  border: 2px solid #353434;
+  border-radius: 10px;
+  box-shadow: 0px 5px 7px rgb(63, 63, 63);
+  width: 250px;
+}
+.todo_input .todo_input_item input:focus {
+  outline: 2px solid rgb(0, 230, 122);
+}
+
+.todo_input_item .primary_button {
+  padding: 8px;
+  border: none;
+  border-radius: none;
+  margin-top: 25px;
+  background: rgb(0, 230, 122);
+  color: #fff;
+  padding: 10px;
+  width: 60px;
+}
+
+.todo_input_item .primary_button:hover {
+  background-color: rgb(4, 196, 106);
+}
+
+.secondary_button {
+  padding: 8px;
+  border: none;
+  border-radius: none;
+  margin-top: 25px;
+  background: rgb(71, 71, 71);
+  color: #fff;
+  padding: 10px;
+  width: fit-content;
+}
+
+.active {
+  background-color: rgb(4, 196, 106);
+}

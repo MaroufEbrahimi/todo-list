@@ -1,7 +1,9 @@
-import React from "react";
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
 
 const App = () => {
+  const [isCompeleteColor, setIsCompeleteColor] = useState(false);
+
   return (
     <div className="App">
       <h1>TODO LIST</h1>
@@ -26,8 +28,22 @@ const App = () => {
 
         {/* controller buttons */}
         <div className="button_area">
-          <button>Todo</button>
-          <button>Completed</button>
+          <button
+            className={`secondary_button ${
+              isCompeleteColor === false && "active"
+            }`}
+            onClick={() => setIsCompeleteColor(false)}
+          >
+            To Do
+          </button>
+          <button
+            className={`secondary_button ${
+              isCompeleteColor === true && "active"
+            }`}
+            onClick={() => setIsCompeleteColor(true)}
+          >
+            Completed
+          </button>
         </div>
 
         {/* all todos */}
