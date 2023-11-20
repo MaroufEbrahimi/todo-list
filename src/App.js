@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { MdDelete } from "react-icons/md";
+import { FaCheck } from "react-icons/fa6";
 import "./App.css";
 
 const App = () => {
@@ -49,8 +51,15 @@ const App = () => {
         {/* all todos */}
         <div className="todo_lists">
           <div className="todo_list_item">
-            <h3>Task</h3>
-            <p>Description</p>
+            <div>
+              <h3>Task</h3>
+              <p>Description</p>
+            </div>
+
+            <div className="icons">
+              <MdDelete className="icon delete" />
+              <FaCheck className="icon check" />
+            </div>
           </div>
         </div>
       </div>
