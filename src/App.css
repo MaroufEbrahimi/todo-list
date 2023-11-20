@@ -84,3 +84,53 @@ button {
 .active {
   background-color: rgb(4, 196, 106);
 }
+
+.button_area {
+  margin-bottom: 15px;
+}
+
+/* todo lists */
+.todo_lists {
+  display: flex;
+  flex-direction: column;
+}
+.todo_lists .todo_list_item {
+  background-color: #414040;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-top: 10px;
+  box-shadow: 0px 3px 5px rgb(43, 42, 42);
+}
+.todo_list_item h3 {
+  font-size: 25px;
+  color: rgb(0, 230, 122);
+  font-weight: bold;
+  margin: 0;
+}
+.todo_list_item p {
+  font-size: 14px;
+  color: rgb(161, 161, 161);
+  margin-top: 8px;
+}
+
+/* list icons */
+.icons {
+  display: flex;
+  gap: 10px;
+}
+.icons .icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s ease-in;
+}
+.icons .delete:hover {
+  color: rgb(245, 73, 73);
+}
+.icons .check:hover {
+  color: rgb(0, 230, 122);
+}
