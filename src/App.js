@@ -9,6 +9,7 @@ const App = () => {
   const [newTitle, setNewTitle] = useState("");
   const [newDescription, setNewDescription] = useState("");
 
+  // added new todo
   const handleAddTodo = () => {
     let newTodoItem = {
       title: newTitle,
@@ -19,6 +20,14 @@ const App = () => {
     updatedTodoArr.push(newTodoItem);
     setAllTodos(updatedTodoArr);
     localStorage.setItem("todolist", JSON.stringify(updatedTodoArr));
+  };
+
+  // delete todo
+  const handleDeleteTodo = (index) => {
+    let reducedTodo = [...allTodos];
+    reducedTodo.splice(index);
+    localStorage.setItem("todolist", JSON.stringify(reducedTodo));
+    setAllTodos(reducedTodo);
   };
 
   useEffect(() => {
@@ -95,7 +104,11 @@ const App = () => {
                 </div>
 
                 <div className="icons">
-                  <MdDelete className="icon delete" title="Delete" />
+                  <MdDelete
+                    className="icon delete"
+                    title="Delete"
+                    onClick={() => handleDeleteTodo(index)}
+                  />
                   <FaCheck className="icon check" title="Compelete" />
                 </div>
               </div>
