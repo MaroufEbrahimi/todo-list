@@ -8,6 +8,7 @@ const App = () => {
   const [allTodos, setAllTodos] = useState([]);
   const [newTitle, setNewTitle] = useState("");
   const [newDescription, setNewDescription] = useState("");
+  const [completedTodos, setCompletedTodos] = useState([]);
 
   // added new todo
   const handleAddTodo = () => {
@@ -28,6 +29,40 @@ const App = () => {
     reducedTodo.splice(index);
     localStorage.setItem("todolist", JSON.stringify(reducedTodo));
     setAllTodos(reducedTodo);
+  };
+
+  // compelete todos
+  const handleComplete = (index) => {
+    let now = new Date();
+    let date = now.getDate();
+    let month = now.getMonth() + 1;
+    let year = now.getFullYear();
+    let hour = now.getHours();
+    let minute = now.getMinutes();
+    let sec = now.getSeconds();
+
+    let completedOn =
+      date +
+      "-" +
+      month +
+      "-" +
+      year +
+      " at " +
+      hour +
+      ":" +
+      minute +
+      ":" +
+      sec;
+
+    let fillteredItem = {
+      ...allTodos[index],
+      completedOn: completedOn,
+    };
+
+    let updatedCompletedArr = [...completedTodos];
+    updatedCompletedArr.push(fillteredItem);
+    setCompletedTodos(updatedCompletedArr);
+    handleDeleteTodo(index);
   };
 
   useEffect(() => {
@@ -95,25 +130,58 @@ const App = () => {
 
         {/* all todos */}
         <div className="todo_lists">
-          {allTodos.map((todo, index) => {
-            return (
-              <div className="todo_list_item" key={index}>
-                <div>
-                  <h3>{todo.title}</h3>
-                  <p>{todo.description}</p>
-                </div>
+          {isCompeleteColor === false &&
+            allTodos.map((todo, index) => {
+              return (
+                <div className="todo_list_item" key={index}>
+                  <div>
+                    <h3>{todo.title}</h3>
+                    <p>{todo.description}</p>
+                  </div>
 
-                <div className="icons">
-                  <MdDelete
-                    className="icon delete"
-                    title="Delete"
-                    onClick={() => handleDeleteTodo(index)}
-                  />
-                  <FaCheck className="icon check" title="Compelete" />
+                  <div className="icons">
+                    <MdDelete
+                      className="icon delete"
+                      title="Delete"
+                      onClick={() => handleDeleteTodo(index)}
+                    />
+                    <FaCheck
+                      className="icon check"
+                      title="Compelete"
+                      onClick={() => handleComplete(index)}
+                    />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+
+          {isCompeleteColor === true &&
+            completedTodos.map((todo, index) => {
+              return (
+                <div className="todo_list_item" key={index}>
+                  <div>
+                    <h3>{todo.title}</h3>
+                    <p>{todo.description}</p>
+                    <p>
+                      <small>Compelete on: {todo.completedOn}</small>
+                    </p>
+                  </div>
+
+                  <div className="icons">
+                    <MdDelete
+                      className="icon delete"
+                      title="Delete"
+                      onClick={() => handleDeleteTodo(index)}
+                    />
+                    {/* <FaCheck
+                      className="icon check"
+                      title="Compelete"
+                      onClick={() => handleComplete(index)}
+                    /> */}
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>
