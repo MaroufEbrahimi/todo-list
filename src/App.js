@@ -26,7 +26,7 @@ const App = () => {
   // delete todo
   const handleDeleteTodo = (index) => {
     let reducedTodo = [...allTodos];
-    reducedTodo.splice(index);
+    reducedTodo.splice(index, 1);
     localStorage.setItem("todolist", JSON.stringify(reducedTodo));
     setAllTodos(reducedTodo);
   };
@@ -63,12 +63,26 @@ const App = () => {
     updatedCompletedArr.push(fillteredItem);
     setCompletedTodos(updatedCompletedArr);
     handleDeleteTodo(index);
+    localStorage.setItem("completedTodos", JSON.stringify(updatedCompletedArr));
+  };
+
+  // delete completed todo
+  const handleDeleteCompletedTodo = (index) => {
+    let reducedTodo = [...completedTodos];
+    reducedTodo.splice(index, 1);
+    localStorage.setItem("completedTodos", JSON.stringify(reducedTodo));
+    setCompletedTodos(reducedTodo);
   };
 
   useEffect(() => {
     let savedTodo = JSON.parse(localStorage.getItem("todolist"));
+    let savedCompletedTodo = JSON.parse(localStorage.getItem("completedTodos"));
     if (savedTodo) {
       setAllTodos(savedTodo);
+    }
+
+    if (savedCompletedTodo) {
+      setCompletedTodos(savedCompletedTodo);
     }
   }, []);
 
@@ -171,7 +185,7 @@ const App = () => {
                     <MdDelete
                       className="icon delete"
                       title="Delete"
-                      onClick={() => handleDeleteTodo(index)}
+                      onClick={() => handleDeleteCompletedTodo(index)}
                     />
                     {/* <FaCheck
                       className="icon check"
