@@ -1,9 +1,9 @@
+/* general */
 body {
   background-color: #1f1e1e;
   color: #fff;
   overflow: hidden;
 }
-
 h1 {
   text-align: center;
 }
@@ -12,14 +12,34 @@ button {
   cursor: pointer;
 }
 
+/* Scroll bar */
+::-webkit-scrollbar {
+  width: 7px;
+  transition: all 2s ease-in-out;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2eca6a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #26a356;
+}
+
+/* todo list */
 .todo_wrapper {
   background-color: #353434;
   padding: 2%;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 3%;
-  max-height: 80vh;
+  margin-top: 2.7%;
+  max-height: 75vh;
   overflow-y: auto;
   box-shadow: 0px 5px 7px rgb(27, 27, 27);
 }

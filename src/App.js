@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
 import "./App.css";
@@ -15,12 +15,18 @@ const App = () => {
       description: newDescription,
     };
 
-    let updataTodoArr = [...allTodos];
-    updataTodoArr.push(newTodoItem);
-    setAllTodos(updataTodoArr);
-
-    console.log(updataTodoArr.title);
+    let updatedTodoArr = [...allTodos];
+    updatedTodoArr.push(newTodoItem);
+    setAllTodos(updatedTodoArr);
+    localStorage.setItem("todolist", JSON.stringify(updatedTodoArr));
   };
+
+  useEffect(() => {
+    let savedTodo = JSON.parse(localStorage.getItem("todolist"));
+    if (savedTodo) {
+      setAllTodos(savedTodo);
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -80,19 +86,21 @@ const App = () => {
 
         {/* all todos */}
         <div className="todo_lists">
-          {allTodos.map((todo, index) => (
-            <div className="todo_list_item" key={index}>
-              <div>
-                <h3>{todo.title}</h3>
-                <p>{todo.description}</p>
-              </div>
+          {allTodos.map((todo, index) => {
+            return (
+              <div className="todo_list_item" key={index}>
+                <div>
+                  <h3>{todo.title}</h3>
+                  <p>{todo.description}</p>
+                </div>
 
-              <div className="icons">
-                <MdDelete className="icon delete" />
-                <FaCheck className="icon check" />
+                <div className="icons">
+                  <MdDelete className="icon delete" title="Delete" />
+                  <FaCheck className="icon check" title="Compelete" />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
