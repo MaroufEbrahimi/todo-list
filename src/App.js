@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
-import { FaCheck, FaSquareSteam } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
 import "./App.css";
 
@@ -11,24 +11,27 @@ const App = () => {
   const [newDescription, setNewDescription] = useState("");
   const [completedTodos, setCompletedTodos] = useState([]);
   const [editTitle, setEditTitle] = useState(null);
-  // const [editDescription, setEditDescription] = useState(null);
+  const [editDescription, setEditDescription] = useState(null);
 
   // update
-  const updateTodo = (title, id, completed) => {
+  const updateTodo = (title, description, id, completed) => {
     const newTodo = allTodos.map((todo) =>
-      todo.id === id ? { title, id, completed } : todo
+      todo.id === id ? { title, description, id, completed } : todo
     );
     setAllTodos(newTodo);
     setEditTitle("");
+    setEditDescription("");
   };
 
   useEffect(() => {
-    if (editTitle) {
+    if (editTitle && editDescription) {
       setNewTitle(editTitle.title);
+      setNewDescription(editTitle.description);
     } else {
       setNewTitle("");
+      setNewDescription("");
     }
-  }, [setNewTitle, editTitle]);
+  }, [setNewTitle, setNewDescription, editTitle, editDescription]);
 
   // added new todo
   const handleAddTodo = () => {
@@ -37,7 +40,7 @@ const App = () => {
       description: newDescription,
     };
 
-    if (!editTitle) {
+    if (!editTitle && !editDescription) {
       let updatedTodoArr = [...allTodos];
       updatedTodoArr.push(newTodoItem);
       setAllTodos(updatedTodoArr);
@@ -45,7 +48,7 @@ const App = () => {
       setNewTitle("");
       setNewDescription("");
     } else {
-      updateTodo(newTitle, editTitle.id, editTitle.completed);
+      updateTodo(newTitle, newDescription, editTitle.id, editTitle.completed);
     }
   };
 
@@ -104,6 +107,7 @@ const App = () => {
   const handleEditTodo = ({ id }) => {
     const findTodo = allTodos.find((todo) => todo.id === id);
     setEditTitle(findTodo);
+    setEditDescription(findTodo);
   };
 
   useEffect(() => {
