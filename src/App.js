@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
+import { CiEdit } from "react-icons/ci";
 import "./App.css";
 
 const App = () => {
@@ -9,6 +10,16 @@ const App = () => {
   const [newTitle, setNewTitle] = useState("");
   const [newDescription, setNewDescription] = useState("");
   const [completedTodos, setCompletedTodos] = useState([]);
+  const [editTodo, setEditTodo] = useState(null);
+
+  // update
+  const updateTodo = (title, id, completed) => {
+    const newTodo = allTodos.map((todo) => {
+      todo.id === id ? { title, id, completed } : todo;
+    });
+    setAllTodos(newTodo);
+    setEditTodo("");
+  };
 
   // added new todo
   const handleAddTodo = () => {
@@ -17,10 +28,16 @@ const App = () => {
       description: newDescription,
     };
 
-    let updatedTodoArr = [...allTodos];
-    updatedTodoArr.push(newTodoItem);
-    setAllTodos(updatedTodoArr);
-    localStorage.setItem("todolist", JSON.stringify(updatedTodoArr));
+    if (!editTodo) {
+      let updatedTodoArr = [...allTodos];
+      updatedTodoArr.push(newTodoItem);
+      setAllTodos(updatedTodoArr);
+      localStorage.setItem("todolist", JSON.stringify(updatedTodoArr));
+      setNewTitle("");
+      setNewDescription("");
+    } else {
+      updateTodo(input, editTodo.id, editTodo.completed);
+    }
   };
 
   // delete todo
@@ -74,6 +91,12 @@ const App = () => {
     setCompletedTodos(reducedTodo);
   };
 
+  // edit the text
+  const handleEditTodo = ({ id }) => {
+    const findTodo = allTodos.find((todo) => todo.id === id);
+    setEditTodo(findTodo);
+  };
+
   useEffect(() => {
     let savedTodo = JSON.parse(localStorage.getItem("todolist"));
     let savedCompletedTodo = JSON.parse(localStorage.getItem("completedTodos"));
@@ -100,6 +123,7 @@ const App = () => {
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
               placeholder="What's the task Title"
+              required
             />
           </div>
           <div className="todo_input_item">
@@ -109,6 +133,7 @@ const App = () => {
               value={newDescription}
               onChange={(e) => setNewDescription(e.target.value)}
               placeholder="What's the task Description"
+              required
             />
           </div>
           <div className="todo_input_item">
@@ -158,6 +183,11 @@ const App = () => {
                       className="icon delete"
                       title="Delete"
                       onClick={() => handleDeleteTodo(index)}
+                    />
+                    <CiEdit
+                      className="icon check"
+                      title="Edit"
+                      onClick={() => handleEditTodo(index)}
                     />
                     <FaCheck
                       className="icon check"
