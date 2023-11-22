@@ -1,0 +1,14 @@
+@font-face {
+  font-family: poppins_r;
+  src: url(assets/fonts/poppins/Poppins-Regular.ttf);
+}
+
+@font-face {
+  font-family: poppins_m;
+  src: url(assets/fonts/poppins/Poppins-Medium.ttf);
+}
+
+*{
+    font-family: poppins_r;
+    letter-spacing: 0.03em;
+}

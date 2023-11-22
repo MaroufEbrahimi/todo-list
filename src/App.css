@@ -63,6 +63,8 @@ button {
 .todo_input .todo_input_item label {
   font-weight: bold;
   margin-bottom: 10px;
+  letter-spacing: 0.1em;
+  font-size: 17px;
 }
 .todo_input .todo_input_item input {
   padding: 8px;
@@ -79,11 +81,12 @@ button {
   padding: 8px;
   border: none;
   border-radius: none;
-  margin-top: 25px;
+  margin-top: 34px;
   background: rgb(0, 230, 122);
   color: #fff;
-  padding: 10px;
-  width: 60px;
+  padding: 8px 12px;
+  font-size: 15px;
+  letter-spacing: 0.01em;
 }
 
 .todo_input_item .primary_button:hover {
