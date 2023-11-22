@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
-import { FaCheck } from "react-icons/fa6";
+import { FaCheck, FaSquareSteam } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
 import "./App.css";
 
@@ -10,16 +10,25 @@ const App = () => {
   const [newTitle, setNewTitle] = useState("");
   const [newDescription, setNewDescription] = useState("");
   const [completedTodos, setCompletedTodos] = useState([]);
-  const [editTodo, setEditTodo] = useState(null);
+  const [editTitle, setEditTitle] = useState(null);
+  // const [editDescription, setEditDescription] = useState(null);
 
   // update
   const updateTodo = (title, id, completed) => {
-    const newTodo = allTodos.map((todo) => {
-      todo.id === id ? { title, id, completed } : todo;
-    });
+    const newTodo = allTodos.map((todo) =>
+      todo.id === id ? { title, id, completed } : todo
+    );
     setAllTodos(newTodo);
-    setEditTodo("");
+    setEditTitle("");
   };
+
+  useEffect(() => {
+    if (editTitle) {
+      setNewTitle(editTitle.title);
+    } else {
+      setNewTitle("");
+    }
+  }, [setNewTitle, editTitle]);
 
   // added new todo
   const handleAddTodo = () => {
@@ -28,7 +37,7 @@ const App = () => {
       description: newDescription,
     };
 
-    if (!editTodo) {
+    if (!editTitle) {
       let updatedTodoArr = [...allTodos];
       updatedTodoArr.push(newTodoItem);
       setAllTodos(updatedTodoArr);
@@ -36,7 +45,7 @@ const App = () => {
       setNewTitle("");
       setNewDescription("");
     } else {
-      updateTodo(input, editTodo.id, editTodo.completed);
+      updateTodo(newTitle, editTitle.id, editTitle.completed);
     }
   };
 
@@ -94,7 +103,7 @@ const App = () => {
   // edit the text
   const handleEditTodo = ({ id }) => {
     const findTodo = allTodos.find((todo) => todo.id === id);
-    setEditTodo(findTodo);
+    setEditTitle(findTodo);
   };
 
   useEffect(() => {
@@ -142,7 +151,7 @@ const App = () => {
               onClick={handleAddTodo}
               className="primary_button"
             >
-              Add
+              {editTitle ? "OK" : "Add"}
             </button>
           </div>
         </div>
@@ -187,7 +196,7 @@ const App = () => {
                     <CiEdit
                       className="icon check"
                       title="Edit"
-                      onClick={() => handleEditTodo(index)}
+                      onClick={() => handleEditTodo(todo)}
                     />
                     <FaCheck
                       className="icon check"
