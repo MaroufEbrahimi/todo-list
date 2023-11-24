@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
+import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 
 const App = () => {
@@ -34,17 +35,14 @@ const App = () => {
   }, [setNewTitle, setNewDescription, editTitle, editDescription]);
 
   // added new todo
-  const handleAddTodo = () => {
-    let newTodoItem = {
-      title: newTitle,
-      description: newDescription,
-    };
-
+  const handleAddTodo = (event) => {
+    event.preventDefault();
     if (!editTitle && !editDescription) {
-      let updatedTodoArr = [...allTodos];
-      updatedTodoArr.push(newTodoItem);
-      setAllTodos(updatedTodoArr);
-      localStorage.setItem("todolist", JSON.stringify(updatedTodoArr));
+      setAllTodos([
+        ...allTodos,
+        { id: uuidv4(), title: newTitle, description: newDescription },
+      ]);
+      localStorage.setItem("todolist", JSON.stringify([...allTodos]));
       setNewTitle("");
       setNewDescription("");
     } else {
@@ -128,7 +126,7 @@ const App = () => {
 
       <div className="todo_wrapper">
         {/* add new todos */}
-        <div className="todo_input">
+        <form className="todo_input" onSubmit={handleAddTodo}>
           <div className="todo_input_item">
             <label>Title</label>
             <input
@@ -151,14 +149,14 @@ const App = () => {
           </div>
           <div className="todo_input_item">
             <button
-              type="button"
+              type="submit"
               onClick={handleAddTodo}
               className="primary_button"
             >
               {editTitle ? "OK" : "Add"}
             </button>
           </div>
-        </div>
+        </form>
 
         {/* controller buttons */}
         <div className="button_area">
@@ -185,7 +183,7 @@ const App = () => {
           {isCompeleteColor === false &&
             allTodos.map((todo, index) => {
               return (
-                <div className="todo_list_item" key={index}>
+                <div className="todo_list_item" key={todo.id}>
                   <div>
                     <h3>{todo.title}</h3>
                     <p>{todo.description}</p>
