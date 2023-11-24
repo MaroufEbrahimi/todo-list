@@ -67,10 +67,12 @@ const App = () => {
     let hour = now.getHours();
     let minute = now.getMinutes();
     let sec = now.getSeconds();
+    let pmam = "AM";
 
     // cover 24 hours to 12 hours
     if (hour > 12) {
       hour = hour % 12;
+      pmam = "PM";
     }
 
     let completedOn =
@@ -84,7 +86,9 @@ const App = () => {
       ":" +
       minute +
       ":" +
-      sec;
+      sec +
+      " " +
+      pmam;
 
     let fillteredItem = {
       ...allTodos[index],
