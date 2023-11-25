@@ -72,7 +72,7 @@ const App = () => {
     // cover 24 hours to 12 hours
     if (hour > 12) {
       hour = hour % 12;
-      pmam = "ب.ظ";
+      pmam = "ب‌.ظ";
     }
 
     let completedOn =
@@ -165,7 +165,7 @@ const App = () => {
               onClick={handleAddTodo}
               className="primary_button"
             >
-              {editTitle ? "تايید" : "اضافه کردن"}
+              {editTitle ? "تائید" : "اضافه کردن"}
             </button>
           </div>
         </form>
@@ -204,17 +204,17 @@ const App = () => {
                   <div className="icons">
                     <MdDelete
                       className="icon delete"
-                      title="Delete"
+                      title="پاک کردن"
                       onClick={() => handleDeleteTodo(index)}
                     />
                     <CiEdit
                       className="icon check"
-                      title="Edit"
+                      title="ویرایش"
                       onClick={() => handleEditTodo(todo)}
                     />
                     <FaCheck
                       className="icon check"
-                      title="Compelete"
+                      title="تکمیل کردن"
                       onClick={() => handleComplete(index)}
                     />
                   </div>
@@ -237,14 +237,9 @@ const App = () => {
                   <div className="icons">
                     <MdDelete
                       className="icon delete"
-                      title="Delete"
+                      title="پاک کردن"
                       onClick={() => handleDeleteCompletedTodo(index)}
                     />
-                    {/* <FaCheck
-                      className="icon check"
-                      title="Compelete"
-                      onClick={() => handleComplete(index)}
-                    /> */}
                   </div>
                 </div>
               );
