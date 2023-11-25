@@ -3,6 +3,7 @@ import { MdDelete } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
 import { v4 as uuidv4 } from "uuid";
+import moment from "jalali-moment";
 import "./App.css";
 
 const App = () => {
@@ -60,13 +61,29 @@ const App = () => {
 
   // compelete todos
   const handleComplete = (index) => {
-    let now = new Date();
-    let date = now.getDate();
-    let month = now.getMonth() + 1;
-    let year = now.getFullYear();
-    let hour = now.getHours();
-    let minute = now.getMinutes();
-    let sec = now.getSeconds();
+    let persianMonth = [
+      "حمل",
+      "ثور",
+      "جوزا",
+      "سرطان",
+      "اسد",
+      "سنبله",
+      "میزان",
+      "عقرب",
+      "قوس",
+      "جدی",
+      "دلو",
+      "حوت",
+    ];
+
+    let currentDate = new Date();
+    let newDateShamsi = moment(currentDate);
+    let year = newDateShamsi.jYear();
+    let month = persianMonth[newDateShamsi.jMonth()];
+    let day = newDateShamsi.jDate();
+    let hour = newDateShamsi.hours();
+    let minute = newDateShamsi.minute();
+    let sec = newDateShamsi.seconds();
     let pmam = "ق.ظ";
 
     // cover 24 hours to 12 hours
@@ -76,12 +93,12 @@ const App = () => {
     }
 
     let completedOn =
-      date +
+      day +
       "-" +
       month +
       "-" +
       year +
-      " به " +
+      " ساعت " +
       hour +
       ":" +
       minute +
