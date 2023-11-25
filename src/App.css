@@ -1,15 +1,18 @@
 /* general */
 body {
-  background-color: #1f1e1e;
-  color: #fff;
+  background-color: #ffd584;
+  color: var(--gen-color);
   overflow: hidden;
-}
-h1 {
-  text-align: center;
+  direction: rtl;
 }
 
 button {
   cursor: pointer;
+}
+:root {
+  --gen-color: #ffc451;
+  --bg-color: #353434;
+  --txt-color: #668cff;
 }
 
 /* Scroll bar */
@@ -23,17 +26,23 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2eca6a;
+  background: var(--gen-color);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #26a356;
+  background: var(--gen-color);
+}
+
+.App > h1 {
+  text-align: center;
+  text-shadow: 0px 1px 1px #000;
+  font-size: 34px;
 }
 
 /* todo list */
 .todo_wrapper {
-  background-color: #353434;
+  background-color: var(--bg-color);
   padding: 2%;
   width: fit-content;
   margin-left: auto;
@@ -68,13 +77,13 @@ button {
 }
 .todo_input .todo_input_item input {
   padding: 8px;
-  border: 2px solid #353434;
+  border: 2px solid var(--bg-color);
   border-radius: 10px;
   box-shadow: 0px 5px 7px rgb(63, 63, 63);
   width: 250px;
 }
 .todo_input .todo_input_item input:focus {
-  outline: 2px solid rgb(0, 230, 122);
+  outline: 2px solid var(--gen-color);
 }
 
 .todo_input_item .primary_button {
@@ -82,15 +91,16 @@ button {
   border: none;
   border-radius: none;
   margin-top: 34px;
-  background: rgb(0, 230, 122);
+  background: var(--gen-color);
   color: #fff;
   padding: 8px 12px;
   font-size: 15px;
   letter-spacing: 0.01em;
+  opacity: 0.9;
 }
 
 .todo_input_item .primary_button:hover {
-  background-color: rgb(4, 196, 106);
+  opacity: 1;
 }
 
 .secondary_button {
@@ -105,7 +115,9 @@ button {
 }
 
 .active {
-  background-color: rgb(4, 196, 106);
+  background-color: var(--gen-color);
+  color: #000;
+  font-weight: 600;
 }
 
 .button_area {
@@ -131,15 +143,16 @@ button {
 }
 .todo_list_item h3 {
   font-size: 25px;
-  color: rgb(0, 230, 122);
+  color: var(--gen-color);
   font-weight: bold;
   margin: 0;
 }
 .todo_list_item p {
   font-size: 14px;
-  color: rgb(161, 161, 161);
+  color: rgb(209, 206, 206);
   margin-top: 8px;
   text-align: justify;
+  letter-spacing: 0.02em;
 }
 
 /* list icons */
@@ -158,5 +171,16 @@ button {
   color: rgb(245, 73, 73);
 }
 .icons .check:hover {
-  color: rgb(0, 230, 122);
+  color: var(--gen-color);
+}
+
+.todo_list_complete small {
+  border-bottom: 1px dotted var(--gen-color);
+}
+
+.complete_on {
+  display: flex;
+  text-align: end;
+  justify-content: end;
+  text-align: end;
 }

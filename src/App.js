@@ -67,12 +67,12 @@ const App = () => {
     let hour = now.getHours();
     let minute = now.getMinutes();
     let sec = now.getSeconds();
-    let pmam = "AM";
+    let pmam = "ق.ظ";
 
     // cover 24 hours to 12 hours
     if (hour > 12) {
       hour = hour % 12;
-      pmam = "PM";
+      pmam = "ب.ظ";
     }
 
     let completedOn =
@@ -81,7 +81,7 @@ const App = () => {
       month +
       "-" +
       year +
-      " at " +
+      " به " +
       hour +
       ":" +
       minute +
@@ -132,28 +132,30 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>TODO LIST</h1>
+      <h1>
+        <p>لیست یاداشت ها</p>
+      </h1>
 
       <div className="todo_wrapper">
         {/* add new todos */}
         <form className="todo_input" onSubmit={handleAddTodo}>
           <div className="todo_input_item">
-            <label>Title</label>
+            <label>عنوان</label>
             <input
               type="text"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              placeholder="What's the task Title"
+              placeholder="عنوان مربوطه ..."
               required
             />
           </div>
           <div className="todo_input_item">
-            <label>Description</label>
+            <label>توضیحات</label>
             <input
               type="text"
               value={newDescription}
               onChange={(e) => setNewDescription(e.target.value)}
-              placeholder="What's the task Description"
+              placeholder="توضیحات در باره ..."
               required
             />
           </div>
@@ -163,7 +165,7 @@ const App = () => {
               onClick={handleAddTodo}
               className="primary_button"
             >
-              {editTitle ? "OK" : "Add"}
+              {editTitle ? "تايید" : "اضافه کردن"}
             </button>
           </div>
         </form>
@@ -176,7 +178,7 @@ const App = () => {
             }`}
             onClick={() => setIsCompeleteColor(false)}
           >
-            To Do
+            یاداشت ها
           </button>
           <button
             className={`secondary_button ${
@@ -184,7 +186,7 @@ const App = () => {
             }`}
             onClick={() => setIsCompeleteColor(true)}
           >
-            Completed
+            تکمیل شده ها
           </button>
         </div>
 
@@ -224,11 +226,11 @@ const App = () => {
             completedTodos.map((todo, index) => {
               return (
                 <div className="todo_list_item" key={index}>
-                  <div>
+                  <div className="todo_list_complete">
                     <h3>{todo.title}</h3>
                     <p>{todo.description}</p>
-                    <p>
-                      <small>Compelete on: {todo.completedOn}</small>
+                    <p className="complete_on">
+                      <small>تکمیل شده در: {todo.completedOn}</small>
                     </p>
                   </div>
 
