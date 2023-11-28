@@ -196,3 +196,100 @@ button {
   border-bottom: 1px dotted var(--gen-color);
   color: var(--gen-color);
 }
+
+/* Responsive */
+@media (max-width: 778px) {
+  .todo_input {
+    flex-direction: column;
+  }
+}
+@media (max-width: 480px) {
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  .App > h1 {
+    font-size: 30px;
+  }
+  .todo_wrapper {
+    padding: 3% 5%;
+    border-radius: 18px;
+  }
+  .todo_input .todo_input_item label {
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  .todo_input .todo_input_item {
+    margin-right: 0px;
+  }
+  .todo_input .todo_input_item input {
+    padding: 6px 8px;
+    font-size: 14px;
+    border-radius: 7px;
+    width: 200px;
+    margin-bottom: 15px;
+  }
+
+  .todo_input_item .primary_button {
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 6px 10px;
+    font-size: 14.5px;
+  }
+
+  .secondary_button {
+    padding: 8px;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  .button_area {
+    margin-bottom: 10px;
+  }
+
+  /* list */
+  .todo_lists .todo_list_item {
+    flex-direction: column;
+    /* align-items: flex-start; */
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 208px;
+  }
+  .todo_list_item h3 {
+    font-size: 18.5px;
+  }
+  .todo_list_item p {
+    font-size: 13px;
+    margin-top: 2px;
+    padding: 0px 7px;
+  }
+
+  /* icons */
+  .icons {
+    gap: 5px;
+    padding-right: 0px;
+    align-items: flex-end;
+  }
+  .icons .icon {
+    font-size: 18px;
+  }
+
+  .complete_on {
+    margin: 0px;
+  }
+  .complete_on small {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 299px) {
+  .App > h1 {
+    font-size: 28px;
+  }
+
+  .todo_input .todo_input_item label {
+    font-size: 15px;
+  }
+  .todo_input .todo_input_item input {
+    padding: 5px 7px;
+    font-size: 13px;
+  }
+}
