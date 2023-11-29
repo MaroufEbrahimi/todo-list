@@ -238,7 +238,7 @@ const App = () => {
                 </div>
               );
             })}
-
+          {/* Compeleted todos */}
           {isCompeleteColor === true &&
             completedTodos.map((todo, index) => {
               return (
