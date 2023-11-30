@@ -1,8 +1,8 @@
 {
-  "homepage": "https://maroufebrahimi.github.io/todo-list",
   "name": "todo-list",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://maroufebrahimi.github.io/todo-list",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -40,8 +40,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "gh-pages": "^6.1.0"
   }
 }
