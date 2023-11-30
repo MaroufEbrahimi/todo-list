@@ -4,7 +4,7 @@
  # Demo
  Visit: [Project TODO-LIST demo](https://maroufebrahimi.github.io/todo-list/)
 
-![TODO-LIST]()
+![TODO-LIST-HOME](![todo-home](https://github.com/MaroufEbrahimi/todo-list/assets/104528241/b61a2d40-0aa6-4fc8-a6f5-cd1846964b32))
 
 # features
 * full Responsive
