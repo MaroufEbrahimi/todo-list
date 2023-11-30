@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
-import { FaCheck } from "react-icons/fa6";
+import { FaCheck, FaSquareSteam } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
 import { v4 as uuidv4 } from "uuid";
 import moment from "jalali-moment";
@@ -14,6 +14,7 @@ const App = () => {
   const [completedTodos, setCompletedTodos] = useState([]);
   const [editTitle, setEditTitle] = useState(null);
   const [editDescription, setEditDescription] = useState(null);
+  const [error, setError] = useState(false);
 
   // update
   const updateTodo = (title, description, id, completed) => {
@@ -38,16 +39,21 @@ const App = () => {
   // added new todo
   const handleAddTodo = (event) => {
     event.preventDefault();
-    if (!editTitle && !editDescription) {
-      setAllTodos([
-        ...allTodos,
-        { id: uuidv4(), title: newTitle, description: newDescription },
-      ]);
-      localStorage.setItem("todolist", JSON.stringify([...allTodos]));
-      setNewTitle("");
-      setNewDescription("");
-    } else {
-      updateTodo(newTitle, newDescription, editTitle.id, editTitle.completed);
+    if (newTitle.length == 0 || newDescription.length == 0) {
+      setError(true);
+    }
+    if (newTitle && newDescription) {
+      if (!editTitle && !editDescription) {
+        setAllTodos([
+          ...allTodos,
+          { id: uuidv4(), title: newTitle, description: newDescription },
+        ]);
+        localStorage.setItem("todolist", JSON.stringify([...allTodos]));
+        setNewTitle("");
+        setNewDescription("");
+      } else {
+        updateTodo(newTitle, newDescription, editTitle.id, editTitle.completed);
+      }
     }
   };
 
@@ -165,6 +171,7 @@ const App = () => {
               placeholder="عنوان مربوطه ..."
               required
             />
+            {error && newTitle.length <= 0 ? <small>عنوان خالی است</small> : ""}
           </div>
           <div className="todo_input_item">
             <label>توضیحات</label>
@@ -175,6 +182,11 @@ const App = () => {
               placeholder="توضیحات در باره ..."
               required
             />
+            {error && newDescription.length <= 0 ? (
+              <small>قسمت توضیحات خالی است</small>
+            ) : (
+              ""
+            )}
           </div>
           <div className="todo_input_item">
             <button
