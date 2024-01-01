@@ -273,7 +273,7 @@ button {
 
   /* icons */
   .icons {
-    gap: 5px;
+    gap: 12px;
     padding-right: 0px;
     align-items: flex-end;
   }
