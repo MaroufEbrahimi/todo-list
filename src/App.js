@@ -4,6 +4,7 @@ import { FaCheck, FaSquareSteam } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
 import { v4 as uuidv4 } from "uuid";
 import moment from "jalali-moment";
+import { Tooltip } from "react-tooltip";
 import "./App.css";
 
 const App = () => {
@@ -233,18 +234,27 @@ const App = () => {
                   <div className="icons">
                     <MdDelete
                       className="icon delete"
-                      title="پاک کردن"
+                      id="delete-tooltip"
                       onClick={() => handleDeleteTodo(index)}
+                    />
+                    <Tooltip
+                      anchorSelect="#delete-tooltip"
+                      content="پاک کردن"
                     />
                     <CiEdit
                       className="icon check"
-                      title="ویرایش"
+                      id="edit-tooltip"
                       onClick={() => handleEditTodo(todo)}
                     />
+                    <Tooltip anchorSelect="#edit-tooltip" content="ویرایش" />
                     <FaCheck
                       className="icon check"
-                      title="تکمیل کردن"
+                      id="check-tooltip"
                       onClick={() => handleComplete(index)}
+                    />
+                    <Tooltip
+                      anchorSelect="#check-tooltip"
+                      content="تکمیل کردن"
                     />
                   </div>
                 </div>
@@ -266,8 +276,12 @@ const App = () => {
                   <div className="icons">
                     <MdDelete
                       className="icon delete"
-                      title="پاک کردن"
+                      id="delete-tooltip"
                       onClick={() => handleDeleteCompletedTodo(index)}
+                    />
+                    <Tooltip
+                      anchorSelect="#delete-tooltip"
+                      content="پاک کردن"
                     />
                   </div>
                 </div>
