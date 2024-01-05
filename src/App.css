@@ -179,7 +179,7 @@ button {
 /* list icons */
 .icons {
   display: flex;
-  gap: 6.5px;
+  gap: 8px;
   direction: ltr;
   padding-right: 10px;
 }
@@ -273,7 +273,7 @@ button {
 
   /* icons */
   .icons {
-    gap: 12px;
+    gap: 10px;
     padding-right: 0px;
     align-items: flex-end;
   }
